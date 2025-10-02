@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.domain.LottoMachine;
+import lotto.service.LottoMachine;
 import lotto.domain.LottoTickets;
 import lotto.domain.generator.NumberGenerator;
 import org.junit.jupiter.api.DisplayName;

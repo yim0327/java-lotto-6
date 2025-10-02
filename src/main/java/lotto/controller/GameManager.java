@@ -1,6 +1,8 @@
-package lotto.domain;
+package lotto.controller;
 
-public class Buyer {
+import lotto.service.LottoMachine;
+
+public class GameManager {
 
     public void buyLotto(int price, LottoMachine lottoMachine) {
         validate(price);

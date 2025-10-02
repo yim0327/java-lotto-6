@@ -1,6 +1,7 @@
-package lotto.domain;
+package lotto.service;
 
-import lotto.Lotto;
+import lotto.domain.Lotto;
+import lotto.domain.LottoTickets;
 import lotto.domain.generator.NumberGenerator;
 
 import java.util.ArrayList;
