@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.domain.LottoMachine;
+import lotto.domain.LottoTickets;
 import lotto.domain.generator.NumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,10 +26,10 @@ public class LottoMachineTest {
 
         // when
         LottoMachine lottoMachine = new LottoMachine(generator);
-        Lotto lotto = lottoMachine.issue();
+        LottoTickets lottos = lottoMachine.issue(1);
 
         // then
-        assertThat(lotto.getNumbers())
+        assertThat(lottos.getEachLotto(0).getNumbers())
                 .containsExactly(3, 8, 13, 21, 26, 35);
     }
 }
