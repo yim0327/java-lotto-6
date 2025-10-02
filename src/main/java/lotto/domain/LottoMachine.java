@@ -11,6 +11,6 @@ public class LottoMachine {
     }
 
     public Lotto issue() {
-        throw new UnsupportedOperationException("아직 구현되지 않았습니다.");
+        return new Lotto(generator.generateNumbers());
     }
 }
