@@ -1,18 +1,26 @@
 package lotto.controller;
 
+import lotto.domain.LottoTickets;
+import lotto.domain.Money;
 import lotto.service.LottoMachine;
+import lotto.view.InputView;
 
 public class GameManager {
+    private final InputView inputView;
+    private final LottoMachine lottoMachine;
 
-    public void buyLotto(int price, LottoMachine lottoMachine) {
-        validate(price);
-        int count = price/1000;
-        lottoMachine.issue(count);
+    public GameManager(InputView inputView, LottoMachine lottoMachine) {
+        this.inputView = inputView;
+        this.lottoMachine = lottoMachine;
     }
 
-    private void validate(int price) {
-        if (price%1000 != 0) {
-            throw new IllegalArgumentException("구입 금액은 1000원 단위로만 가능합니다.");
-        }
+    public void playGame() {
+        // purchaseLotto();
     }
+
+    private LottoTickets purchaseLotto() {
+        int price = inputView.inputPrice();
+        return lottoMachine.issue(new Money(price).purchaseCount());
+    }
+
 }

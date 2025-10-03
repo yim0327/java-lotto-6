@@ -8,10 +8,11 @@ import lotto.view.InputView;
 
 public class Application {
     public static void main(String[] args) {
-        GameManager buyer = new GameManager();
+        InputView inputView = new InputView();
         NumberGenerator generator = new RandomNumberGenerator();
         LottoMachine lottoMachine = new LottoMachine(generator);
+        GameManager manager = new GameManager(inputView, lottoMachine);
 
-        buyer.buyLotto(InputView.inputPrice(), lottoMachine);
+        manager.playGame();
     }
 }
