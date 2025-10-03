@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.LottoTickets;
 import lotto.domain.Money;
+import lotto.domain.WinningNumbers;
 import lotto.service.LottoMachine;
 import lotto.view.InputView;
 
@@ -21,6 +22,10 @@ public class GameManager {
     private LottoTickets purchaseLotto() {
         int price = inputView.inputPrice();
         return lottoMachine.issue(new Money(price).purchaseCount());
+    }
+
+    private WinningNumbers winningNumbers() {
+        return new WinningNumbers(inputView.inputWinningNum(), inputView.inputBonusNum());
     }
 
 }

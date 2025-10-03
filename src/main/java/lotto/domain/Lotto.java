@@ -6,7 +6,8 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateCount(numbers);
+        validateRange(numbers);
         this.numbers = numbers;
     }
 
@@ -14,9 +15,18 @@ public class Lotto {
         return numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+    private void validateRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number < LottoRules.MIN || number > LottoRules.MAX) {
+                throw new IllegalArgumentException("로또 번호는 "+LottoRules.MIN+"부터 "
+                        +LottoRules.MAX+" 사이의 숫자여야 합니다.");
+            }
+        }
+    }
+
+    private void validateCount(List<Integer> numbers) {
+        if (numbers.size() != LottoRules.COUNT) {
+            throw new IllegalArgumentException("로또 번호는 6개의 숫자여야 합니다.");
         }
     }
 }
