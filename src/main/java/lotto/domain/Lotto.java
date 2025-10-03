@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -8,11 +9,16 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateCount(numbers);
         validateRange(numbers);
+        validateUnique(numbers);
         this.numbers = numbers;
     }
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    public boolean containsNumber(int number) {
+        return numbers.contains(number);
     }
 
     private void validateRange(List<Integer> numbers) {
@@ -27,6 +33,12 @@ public class Lotto {
     private void validateCount(List<Integer> numbers) {
         if (numbers.size() != LottoRules.COUNT) {
             throw new IllegalArgumentException("로또 번호는 "+LottoRules.COUNT+"개의 숫자여야 합니다.");
+        }
+    }
+
+    private void validateUnique(List<Integer> numbers) {
+        if (numbers.size() != new HashSet<>(numbers).size()) {
+            throw new IllegalArgumentException("중복된 숫자가 있습니다.");
         }
     }
 }
