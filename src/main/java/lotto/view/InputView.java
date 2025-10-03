@@ -11,7 +11,7 @@ public class InputView {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
 
-        return Integer.parseInt(input);
+        return Integer.parseInt(input.trim());
     }
 
     public Lotto inputWinningNum() {
@@ -27,7 +27,7 @@ public class InputView {
     public int inputBonusNum() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
-        return Integer.parseInt(input);
+        return Integer.parseInt(input.trim());
     }
 
 }
