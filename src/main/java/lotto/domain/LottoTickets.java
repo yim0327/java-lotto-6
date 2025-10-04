@@ -12,4 +12,8 @@ public class LottoTickets {
     public Lotto getEachLotto(int idx) {
         return lottos.get(idx);
     }
+
+    public int getLottoCount() {
+        return lottos.size();
+    }
 }
