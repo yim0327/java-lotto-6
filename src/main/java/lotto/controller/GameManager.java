@@ -1,40 +1,37 @@
 package lotto.controller;
 
 import lotto.domain.*;
-import lotto.service.LottoJudge;
-import lotto.service.LottoMachine;
+import lotto.service.LottoGame;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.Map;
 
 public class GameManager {
     private final InputView inputView;
     private final OutputView outputView;
-    private final LottoMachine lottoMachine;
+    private final LottoGame lottoGame;
 
-    public GameManager(InputView inputView, OutputView outputView, LottoMachine lottoMachine) {
+    public GameManager(InputView inputView, OutputView outputView, LottoGame lottoGame) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.lottoMachine = lottoMachine;
+        this.lottoGame = lottoGame;
     }
 
     public void playGame() {
         Money money = inputMoney();
-        LottoTickets tickets = purchaseLotto(money.getAmount());
+        LottoTickets tickets = lottoGame.purchaseLotto(money);
         printTickets(tickets);
 
         WinningNumbers criteria = winningNumbers();
-        LottoJudge judge = new LottoJudge(tickets, criteria);
-        Profit profit = calculateProfit(judge, money);
+        Map<Rank, Integer> result = lottoGame.judgeLotto(tickets, criteria);
+        Profit profit = lottoGame.calculateProfit(result, money);
 
-        printResult(judge, profit);
+        printResult(result, profit);
     }
 
     private Money inputMoney() {
         return new Money(inputView.inputPrice());
-    }
-
-    private LottoTickets purchaseLotto(int price) {
-        return lottoMachine.issue(new Money(price).purchaseCount());
     }
 
     private void printTickets(LottoTickets tickets) {
@@ -45,12 +42,8 @@ public class GameManager {
         return new WinningNumbers(inputView.inputWinningNum(), inputView.inputBonusNum());
     }
 
-    private Profit calculateProfit(LottoJudge judge, Money money) {
-        return Profit.of(judge.judgeResult(), money.purchaseCount() * 1000);
-    }
-
-    private void printResult(LottoJudge judge, Profit profit) {
-        outputView.printResult(judge.judgeResult());
+    private void printResult(Map<Rank, Integer> result, Profit profit) {
+        outputView.printResult(result);
         outputView.printProfit(profit.rate());
     }
 }
