@@ -4,13 +4,16 @@ import lotto.domain.*;
 import lotto.service.LottoJudge;
 import lotto.service.LottoMachine;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class GameManager {
     private final InputView inputView;
+    private final OutputView outputView;
     private final LottoMachine lottoMachine;
 
-    public GameManager(InputView inputView, LottoMachine lottoMachine) {
+    public GameManager(InputView inputView, OutputView outputView, LottoMachine lottoMachine) {
         this.inputView = inputView;
+        this.outputView = outputView;
         this.lottoMachine = lottoMachine;
     }
 
@@ -41,7 +44,7 @@ public class GameManager {
     }
 
     private void printResult(LottoJudge judge, Profit profit) {
-        // OutputView.printResult(judge.judgeResult());
-        // OutputView.printProfit(profit.rate());
+        outputView.printResult(judge.judgeResult());
+        outputView.printProfit(profit.rate());
     }
 }
