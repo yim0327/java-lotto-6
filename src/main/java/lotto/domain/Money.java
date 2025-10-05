@@ -12,6 +12,10 @@ public class Money {
         return amount / 1000;
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
     private void validate(int amount) {
         if (amount%1000 != 0) {
             throw new IllegalArgumentException("구입 금액은 1000원 단위로만 가능합니다.");

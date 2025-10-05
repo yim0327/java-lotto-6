@@ -1,8 +1,7 @@
 package lotto.controller;
 
-import lotto.domain.LottoTickets;
-import lotto.domain.Money;
-import lotto.domain.WinningNumbers;
+import lotto.domain.*;
+import lotto.service.LottoJudge;
 import lotto.service.LottoMachine;
 import lotto.view.InputView;
 
@@ -16,11 +15,20 @@ public class GameManager {
     }
 
     public void playGame() {
-        // purchaseLotto();
+        Money money = inputMoney();
+        LottoTickets tickets = purchaseLotto(money.getAmount());
+        WinningNumbers criteria = winningNumbers();
+        LottoJudge judge = new LottoJudge(tickets, criteria);
+        Profit profit = calculateProfit(judge, money);
+
+        printResult(judge, profit);
     }
 
-    private LottoTickets purchaseLotto() {
-        int price = inputView.inputPrice();
+    private Money inputMoney() {
+        return new Money(inputView.inputPrice());
+    }
+
+    private LottoTickets purchaseLotto(int price) {
         return lottoMachine.issue(new Money(price).purchaseCount());
     }
 
@@ -28,4 +36,12 @@ public class GameManager {
         return new WinningNumbers(inputView.inputWinningNum(), inputView.inputBonusNum());
     }
 
+    private Profit calculateProfit(LottoJudge judge, Money money) {
+        return Profit.of(judge.judgeResult(), money.purchaseCount() * 1000);
+    }
+
+    private void printResult(LottoJudge judge, Profit profit) {
+        // OutputView.printResult(judge.judgeResult());
+        // OutputView.printProfit(profit.rate());
+    }
 }
