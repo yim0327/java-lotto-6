@@ -20,6 +20,8 @@ public class GameManager {
     public void playGame() {
         Money money = inputMoney();
         LottoTickets tickets = purchaseLotto(money.getAmount());
+        printTickets(tickets);
+
         WinningNumbers criteria = winningNumbers();
         LottoJudge judge = new LottoJudge(tickets, criteria);
         Profit profit = calculateProfit(judge, money);
@@ -33,6 +35,10 @@ public class GameManager {
 
     private LottoTickets purchaseLotto(int price) {
         return lottoMachine.issue(new Money(price).purchaseCount());
+    }
+
+    private void printTickets(LottoTickets tickets) {
+        outputView.printTickets(tickets);
     }
 
     private WinningNumbers winningNumbers() {

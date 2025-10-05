@@ -15,7 +15,7 @@ public class InputView {
     }
 
     public Lotto inputWinningNum() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         return new Lotto(Arrays.stream(input.split(","))
                 .map(String::trim)          // 앞뒤 공백 제거
@@ -25,7 +25,7 @@ public class InputView {
     }
 
     public int inputBonusNum() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
         return Integer.parseInt(input.trim());
     }

@@ -1,10 +1,18 @@
 package lotto.view;
 
+import lotto.domain.LottoTickets;
 import lotto.domain.Rank;
 
 import java.util.Map;
 
 public class OutputView {
+
+    public void printTickets(LottoTickets tickets) {
+        System.out.println("\n"+tickets.getLottoCount()+"개를 구매했습니다.");
+        for (int i = 0; i < tickets.getLottoCount(); i++) {
+            System.out.println(tickets.getEachLotto(i).toString());
+        }
+    }
 
     public void printResult(Map<Rank, Integer> judgeResult) {
         System.out.println("\n당첨 통계\n---");

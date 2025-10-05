@@ -10,7 +10,7 @@ public class Lotto {
         validateCount(numbers);
         validateRange(numbers);
         validateUnique(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers.stream().sorted().toList();;
     }
 
     public List<Integer> getNumbers() {
@@ -19,6 +19,11 @@ public class Lotto {
 
     public boolean containsNumber(int number) {
         return numbers.contains(number);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 
     private void validateRange(List<Integer> numbers) {
