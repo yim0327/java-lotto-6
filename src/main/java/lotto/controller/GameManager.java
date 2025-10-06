@@ -31,7 +31,13 @@ public class GameManager {
     }
 
     private Money inputMoney() {
-        return new Money(inputView.inputPrice());
+        while (true) {
+            try {
+                return new Money(inputView.inputPrice());
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR]" + e.getMessage());
+            }
+        }
     }
 
     private void printTickets(LottoTickets tickets) {
