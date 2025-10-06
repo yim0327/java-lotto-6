@@ -17,7 +17,7 @@ public class InputView {
                 validateIsNumeric(input);
                 return Integer.parseInt(input.trim());
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR]" + e.getMessage());
+                System.out.println("[ERROR] " + e.getMessage());
             }
         }
     }
@@ -35,7 +35,7 @@ public class InputView {
                         .collect(Collectors.toList());
                 return new Lotto(numbers);
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR]" + e.getMessage());
+                System.out.println("[ERROR] " + e.getMessage());
             }
         }
     }
@@ -49,7 +49,7 @@ public class InputView {
                 validateIsNumeric(input);
                 return Integer.parseInt(input.trim());
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR]" + e.getMessage());
+                System.out.println("[ERROR] " + e.getMessage());
             }
         }
     }

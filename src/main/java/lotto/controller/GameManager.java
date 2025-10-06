@@ -35,7 +35,7 @@ public class GameManager {
             try {
                 return new Money(inputView.inputPrice());
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR]" + e.getMessage());
+                System.out.println("[ERROR] " + e.getMessage());
             }
         }
     }
@@ -45,7 +45,13 @@ public class GameManager {
     }
 
     private WinningNumbers winningNumbers() {
-        return new WinningNumbers(inputView.inputWinningNum(), inputView.inputBonusNum());
+        while (true) {
+            try {
+                return new WinningNumbers(inputView.inputWinningNum(), inputView.inputBonusNum());
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
     }
 
     private void printResult(Map<Rank, Integer> result, Profit profit) {
