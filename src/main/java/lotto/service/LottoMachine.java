@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoMachine {
-    private NumberGenerator generator;
-    private List<Lotto> lottos;
+    private final NumberGenerator generator;
+    private final List<Lotto> lottos;
 
     public LottoMachine(NumberGenerator generator) {
         this.generator = generator;

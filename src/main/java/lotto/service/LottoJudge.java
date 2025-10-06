@@ -5,7 +5,6 @@ import lotto.domain.Rank;
 import lotto.domain.WinningNumbers;
 
 import java.util.EnumMap;
-import java.util.List;
 import java.util.Map;
 
 public class LottoJudge {
