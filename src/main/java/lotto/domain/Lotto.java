@@ -26,6 +26,10 @@ public class Lotto {
         return numbers.toString();
     }
 
+    public int countMatch(Lotto other) {
+        return (int) numbers.stream().filter(other::containsNumber).count();
+    }
+
     private void validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < LottoRules.MIN || number > LottoRules.MAX) {

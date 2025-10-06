@@ -19,15 +19,9 @@ public class LottoJudge {
 
     public Map<Rank, Integer> judgeResult() {
         Map<Rank, Integer> counts = makeEnumMap();
-        List<Integer> winning = winningNumbers.getWinningNumbers().getNumbers();
 
         for (int i = 0; i < lottoTickets.getLottoCount(); i++) {
-            List<Integer> lotto = lottoTickets.getEachLotto(i).getNumbers();
-
-            int matchCount = (int) lotto.stream().filter(winning::contains).count();
-            boolean bonusMatch = lotto.contains(winningNumbers.getBonusNumber());
-
-            Rank rank = Rank.result(matchCount, bonusMatch);
+            Rank rank = winningNumbers.match(lottoTickets.getEachLotto(i));
             counts.merge(rank, 1, Integer::sum); // 없으면 새로 추가, 있으면 +1 갱신
         }
         return counts;

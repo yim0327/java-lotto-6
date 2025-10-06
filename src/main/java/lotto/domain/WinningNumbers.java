@@ -11,12 +11,10 @@ public class WinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    public Lotto getWinningNumbers() {
-        return winningNumbers;
-    }
-
-    public int getBonusNumber() {
-        return bonusNumber;
+    public Rank match(Lotto lotto) {
+        int matchCount = lotto.countMatch(winningNumbers);
+        boolean bonusMatch = lotto.containsNumber(bonusNumber);
+        return Rank.result(matchCount, bonusMatch);
     }
 
     private void validateBonusNumberRange(int bonusNumber) {
