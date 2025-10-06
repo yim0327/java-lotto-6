@@ -21,7 +21,7 @@ public class LottoGame {
     }
 
     public Profit calculateProfit(Map<Rank, Integer> result, Money money) {
-        return Profit.of(result, money.purchaseCount() * Money.PRICE);
+        return Profit.of(result, money.getAmount());
     }
 
 }

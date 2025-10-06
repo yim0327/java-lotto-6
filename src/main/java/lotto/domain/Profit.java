@@ -12,9 +12,8 @@ public class Profit {
     // 정적 팩토리 메서드
     public static Profit of(Map<Rank, Integer> counts, int totalCost) {
         long totalPrize = getTotalPrize(counts);
-        double rate = ((double) totalPrize / totalCost) * 100;
-        double rounded = Math.round(rate * 10) / 10.0;
-        return new Profit(rounded);
+        double rate = ((double) totalPrize / totalCost) * 100.0;
+        return new Profit(rate);
     }
 
     private static long getTotalPrize(Map<Rank, Integer> counts) {
